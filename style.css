@@ -15,4 +15,7 @@ table {
   }
   div{
     float: left;
+    width: 150px;
+    height: 20px;
+    text-align: center;
   }

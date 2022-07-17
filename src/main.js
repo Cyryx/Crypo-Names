@@ -14,11 +14,11 @@ let buchstabenFilterStelle = 0;
 let buchstabenFilter = "";
 
 //let regEx = new RegExp("^[^" +buchstabenFilter+ "]+$");
-let regEx = /^[^]+$/;
+let regEx = /^[^$1234567890]+$/;
 
 
 console.log(regEx)
-let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "!", "§", "$", "%", "&", "/", "(", ")", "=", "?", "{", "[", "]", "}"];
+let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "!", "§", "$", "%", "&", "/", "(", ")", "=", "?", "{", "[", "]", "}",0,1,2,3,4,5,6,7,8,9];
 
 
 window.onload = function () {
@@ -26,7 +26,7 @@ window.onload = function () {
     coin_validieren();
     coin_Symbol(regEx);
     create_li(buchstabenMap.keys(),"ausgabe_2")
-    create_li(buchstabenMap.values(),"ausgabe_3")
+    create_li(buchstabenMap.values(), "ausgabe_3")
 }
 
 let buchstaben_zaehlen = function (str) {
@@ -40,15 +40,12 @@ let buchstaben_zaehlen = function (str) {
                     if (key === alphabet[e]) {
                         let eintrag = buchstabenMap.set(alphabet[e], buchstabenMap.get(alphabet[e]) + 1).toLowerCase
                         if (fehler.length === 0) {
-                            
                             Arr.push(eintrag);
-                            
                         } else {
                             console.log(`%c Folgende Fehler wurden gefunden:`, 'background: #222; color: red');
                             this.fehler.forEach(function (fehler) {
                                 console.log(`%c ${fehler}`, 'background: #222; color: red');
                             }); 
-
                         };
                     };
                 };
@@ -61,8 +58,6 @@ let coin_validieren = function () {
     let coinWert = Object.values(coinObj); coinWert.forEach(function (e) {
         if (e.match(regEx) !== null) {
             buchstaben_zaehlen(e);
-            
-
         }
     });
 }
@@ -80,11 +75,9 @@ let coin_sort = function (a, b) {
 let coin_Symbol = function () {
     let coinWert = filterArray(Object.values(coinObj));
     let coinArr = [];
-
     let laenge = buchstabenFilterLaenge > "";
     let filter = buchstabenFilter > "";
     let stelle = buchstabenFilterStelle > "";
-
 
     if (laenge && filter && stelle) {
         coinWert.forEach(function (e) {
@@ -96,8 +89,6 @@ let coin_Symbol = function () {
                 coinArr.push(e);
                 coinArr.sort(coin_sort);
                 console.log(coinArr)
-                //create_li(coinArr,"ausgabe_2")
-
             }
         });
     } else if (filter && stelle) {
@@ -120,8 +111,8 @@ let coin_Symbol = function () {
             }
         });
     }
-    create_li(coinArr,"ausgabe_1")
-
+    
+    create_li(coinArr, "ausgabe_1")
     console.log(coinArr);
     return coinArr;
 
