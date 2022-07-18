@@ -7,25 +7,24 @@ let buchstabenMapCount = new Map;
 let fehler = []
 let Arr = []
 
-let buchstabenFilterLaenge = 0;
+let buchstabenFilterLaenge = 6;
 let buchstabenFilterStelle = 0;
-
-
 let buchstabenFilter = "";
 
 //let regEx = new RegExp("^[^" +buchstabenFilter+ "]+$");
 let regEx = /^[^$1234567890]+$/;
 
 
-console.log(regEx)
-let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "!", "§", "$", "%", "&", "/", "(", ")", "=", "?", "{", "[", "]", "}",0,1,2,3,4,5,6,7,8,9];
+//console.log(regEx)
+let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "!", "§", "$", "%", "&", "/", "(", ")", "=", "?", "{", "[", "]", "}", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 
 window.onload = function () {
     create_Map();
-    coin_validieren();
+    //coin_validieren();
     coin_Symbol(regEx);
-    create_li(buchstabenMap.keys(),"ausgabe_2")
+    coin_validieren()
+    create_li(buchstabenMap.keys(), "ausgabe_2")
     create_li(buchstabenMap.values(), "ausgabe_3")
 }
 
@@ -33,7 +32,6 @@ let buchstaben_zaehlen = function (str) {
     str = str.toLowerCase();
     //Neuen wert in alte Map setzen
     for (let i = 0; i < str.length; i++) {
-        //console.clear()
         for (let e = 0; e < alphabet.length; e++) {
             if (str.charAt(i) == alphabet[e]) {
                 for (let key of buchstabenMap.keys()) {
@@ -42,10 +40,10 @@ let buchstaben_zaehlen = function (str) {
                         if (fehler.length === 0) {
                             Arr.push(eintrag);
                         } else {
-                            console.log(`%c Folgende Fehler wurden gefunden:`, 'background: #222; color: red');
+                            //console.log(`%c Folgende Fehler wurden gefunden:`, 'background: #222; color: red');
                             this.fehler.forEach(function (fehler) {
-                                console.log(`%c ${fehler}`, 'background: #222; color: red');
-                            }); 
+                                //console.log(`%c ${fehler}`, 'background: #222; color: red');
+                            });
                         };
                     };
                 };
@@ -55,7 +53,8 @@ let buchstaben_zaehlen = function (str) {
 };
 
 let coin_validieren = function () {
-    let coinWert = Object.values(coinObj); coinWert.forEach(function (e) {
+    let coinWert = filterArray(Object.values(coinObj));
+    coinWert.forEach(function (e) {
         if (e.match(regEx) !== null) {
             buchstaben_zaehlen(e);
         }
@@ -79,8 +78,26 @@ let coin_Symbol = function () {
     let filter = buchstabenFilter > "";
     let stelle = buchstabenFilterStelle > "";
 
-    if (laenge && filter && stelle) {
+    if (laenge && filter && !stelle) {
+
         coinWert.forEach(function (e) {
+            //console.log(`Schleife 1`)
+            if (
+                e.match(regEx) !== null
+                && e.length === buchstabenFilterLaenge
+            ) {
+                for (let i = 0; i < e.length; i++) {
+                    if (e.charAt(i) === buchstabenFilter) {
+                        coinArr.push(e);
+                        coinArr.sort(coin_sort);
+                    }
+                }
+            }
+        });
+    } else if (laenge && filter && stelle) {
+
+        coinWert.forEach(function (e) {
+            //console.log(`Schleife 2`)
             if (
                 e.match(regEx) !== null
                 && e.charAt(buchstabenFilterStelle) === buchstabenFilter
@@ -88,10 +105,10 @@ let coin_Symbol = function () {
             ) {
                 coinArr.push(e);
                 coinArr.sort(coin_sort);
-                console.log(coinArr)
             }
         });
     } else if (filter && stelle) {
+        //console.log(`Schleife 3`)
         coinWert.forEach(function (e) {
             if (
                 e.match(regEx) !== null
@@ -101,7 +118,33 @@ let coin_Symbol = function () {
                 coinArr.sort(coin_sort);
             }
         });
+    } else if (filter && laenge) {
+        //console.log(`Schleife 4`)
+        coinWert.forEach(function (e) {
+            for (let i = 0; i < buchstabenFilterLaenge; i++) {
+                if (
+                    e.match(regEx) !== null
+                    && e.charAt(buchstabenFilterStelle) === buchstabenFilter
+                    && e.length === buchstabenFilterLaenge
+                ) {
+                    coinArr.push(e);
+                    coinArr.sort(coin_sort);
+                }
+            }
+        });
+    } else if (laenge) {
+        coinWert.forEach(function (e) {
+            //console.log(`Schleife 5`)
+            if (
+                e.match(regEx) !== null
+                && e.length === buchstabenFilterLaenge
+            ) {
+                coinArr.push(e);
+                coinArr.sort(coin_sort);
+            }
+        });
     } else {
+        //console.log(`Schleife 6`)
         coinWert.forEach(function (e) {
             if (
                 e.match(regEx) !== null
@@ -111,9 +154,8 @@ let coin_Symbol = function () {
             }
         });
     }
-    
     create_li(coinArr, "ausgabe_1")
-    console.log(coinArr);
+    //console.log(coinArr);
     return coinArr;
 
 }
@@ -127,22 +169,6 @@ let create_Map = function () {
         }
     }
 }
-
-let coin_convert = function () {
-    coinObj.indexOf(":")
-}
-
-/* let regEx = function () {
-} */
-
-
-///////////
-
-let eingabe_uebergeben = function () {
-    daten_ausgeben();
-}
-//let daten_ausgeben = function () {
-
 
 function filterArray(inputArr) {
     var found = {};
@@ -161,13 +187,17 @@ let create_li = function (arr, target) {
     }
     return document.getElementById(`${target}`).appendChild(ol);
 }
-/* let create_li = function (arr, target) {
-    let ol = document.createElement("tr");
-    for (let i of arr) {
-        
-        let li = document.createElement("td");
-        li.innerHTML = i;
-        ol.appendChild(li);
-    }
-    return document.getElementById(`${target}`).appendChild(ol);
-} */
+let hasDuplicates = function () {
+    let coinWert = Object.values(coinObj);
+
+
+    const toFindDuplicates = coinWert => coinWert.filter((item, index) => coinWert.indexOf(item) !== index)
+    const duplicateElementa = toFindDuplicates(coinWert);
+    console.log(duplicateElementa);
+    create_li(duplicateElementa, "ausgabe_4");
+}
+hasDuplicates()
+
+
+
+
