@@ -3,29 +3,29 @@ import { coinObj } from "../src/file.js";
 
 
 let buchstabenMap = new Map;
-let buchstabenMapCount = new Map;
+//let buchstabenMapCount = new Map;
 let fehler = []
 let Arr = []
+let buchstabenFilterArr = []
 
-let buchstabenFilterLaenge = 8;
-let buchstabenFilterStelle = 4;
-let buchstabenFilter = "r";
+let buchstabenFilterLaenge = 0;
+
 
 //let regEx = new RegExp("^[^" +buchstabenFilter+ "]+$");
-let regEx = /^[^$1234567890AaLlGgDdEeHhUu]+$/;
-
+//let regEx = /^[^$1234567890PpAaXxGgBbUuSsDdlinkLINKRYry]+$/;
+let regEx = /^[^123456789§$%&/()=?{}#+*~]+$/;
 
 //console.log(regEx)
-let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "!", "§", "$", "%", "&", "/", "(", ")", "=", "?", "{", "[", "]", "}", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "!", "§", "$", "%", "&", "/", "(", ")", "=", "?", "{", "[", "]", "}", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 window.onload = function () {
     create_Map();
     //coin_validieren();
-    coin_Symbol(regEx);
+    //coin_Symbol(regEx);
+    coinPush();
     coin_validieren()
     create_li(buchstabenMap.keys(), "ausgabe_2")
-    create_li( buchstabenMap.values(), "ausgabe_3")
+    create_li(buchstabenMap.values(), "ausgabe_3")
 }
 
 let buchstaben_zaehlen = function (str) {
@@ -53,7 +53,7 @@ let buchstaben_zaehlen = function (str) {
 };
 
 let coin_validieren = function () {
-    let coinWert = Object.values(coinObj);
+    let coinWert = filterArray(Object.values(coinObj));
     coinWert.forEach(function (e) {
         if (e.match(regEx) !== null) {
             buchstaben_zaehlen(e);
@@ -72,7 +72,7 @@ let coin_sort = function (a, b) {
 }
 
 let coin_Symbol = function () {
-    let coinWert = Object.values(coinObj);
+    let coinWert = filterArray(Object.values(coinObj));
     let coinArr = [];
     let laenge = buchstabenFilterLaenge > "";
     let filter = buchstabenFilter > "";
@@ -94,7 +94,7 @@ let coin_Symbol = function () {
                 }
             }
         });
-    } else if (laenge && filter && stelle ) {
+    } else if (laenge && filter && stelle) {
 
         coinWert.forEach(function (e) {
             console.log(`Schleife 2`)
@@ -148,16 +148,16 @@ let coin_Symbol = function () {
         coinWert.forEach(function (e) {
             if (
                 e.match(regEx) !== null
-            ) {coinArr.sort(coin_sort);
+            ) {
+                coinArr.sort(coin_sort);
                 coinArr.push(e);
-                
+
             }
         });
     }
     create_li(coinArr, "ausgabe_1")
     //console.log(coinArr);
     return coinArr;
-
 }
 
 let create_Map = function () {
@@ -165,7 +165,7 @@ let create_Map = function () {
     if (buchstabenMap.size <= 0) {
         for (let Arr = 0; Arr < alphabet.length; Arr++) {
             buchstabenMap.set(alphabet[Arr], 0);
-            buchstabenMapCount.set(alphabet[Arr], 0);
+            //buchstabenMapCount.set(alphabet[Arr], 0);
         }
     }
 }
@@ -197,6 +197,98 @@ let hasDuplicates = function () {
     //create_li(duplicateElementa, "ausgabe_4");
 }
 
+let filter_Set = function (Arr) {
+    return Array.from(new Set(Arr))
+}
 
+let coinPush = function (stelle, filter) {
+    let coinWert = Object.values(coinObj);
+    let coinOutput = new Set(coinWert);
 
+    let coinArr = [];
+    console.log(`Filter: ${buchstabenFilterArr} Filter Länge: ${buchstabenFilterLaenge}`)
+    coinWert.forEach(function (coinwert_element) {
+        console.log(`Schleife 1`)
 
+        if (coinwert_element.match(regEx) !== null) {
+            for (let i = 0; i < coinwert_element.length; i++) {
+
+                if (buchstabenFilterArr != 0) {
+
+                    buchstabenFilterArr.forEach(function (b) {
+                        if (
+                            coinwert_element.length === buchstabenFilterLaenge
+                            && coinwert_element.charAt(i) === b
+                        ) {
+                            coinArr.push(coinwert_element);
+                            console.log("1")
+                        } else if (
+                            buchstabenFilterLaenge <= 0
+                            && coinwert_element.charAt(i) === b
+                        ) {
+                            coinArr.push(coinwert_element);
+                            console.log("2")
+                        }
+                    })
+                } else {
+                    alphabet.forEach(function (b) {
+                        if (
+                            coinwert_element.length === buchstabenFilterLaenge
+                            && coinwert_element.charAt(i) === b
+                        ) {
+                            coinArr.push(coinwert_element);
+                            console.log("3")
+                        } else if (
+                            buchstabenFilterLaenge <= 0
+                            && coinwert_element.charAt(i) === b
+                        ) {
+                            coinArr.push(coinwert_element);
+                            console.log("4")
+
+                        } 
+
+                    })
+                }
+            }
+        }
+    });
+    coinArr.sort(coin_sort);
+
+    console.log(filter_Set(coinArr));
+
+    //create_li(filter_Set(coinArr), "ausgabe_1")
+    filter_Set(coinArr).forEach(function (e) {
+        taskList(e)
+
+    })
+}
+
+let button = document.getElementById("taskButton");
+button.addEventListener('click', () => taskList());
+
+function taskList(arr) {
+    let item = arr;
+    let newTask = document.createElement("li");
+    let deleteTaskButton = document.createElement("button");
+    deleteTaskButton.textContent = `Delete `; //+item;
+    newTask.innerText = item;
+    document.getElementById("ausgabe_1").appendChild(newTask);
+    newTask.appendChild(deleteTaskButton);    /* 1. ADD BUTTON TO LI */
+  
+    if (markTaskComplete) {
+      //newTask.addEventListener('click', (e) => markTaskComplete(e));
+      deleteTaskButton.addEventListener('click', (i) => removeTask(i));
+    }
+  }
+  
+  
+  function markTaskComplete(e) {
+/*     let strikeThrough = e.target;
+    strikeThrough.style.textDecoration = "line-through"; */
+  }
+  
+  function removeTask(i) {
+    /* 2. THE BUTTON IS NOW A CHILD OF THE LI, SO DELETE ITS PARENT */
+    let deleteTask = i.target.parentElement;
+    deleteTask.remove();
+  }
