@@ -7,35 +7,41 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./src/style.css">
   <title>Cyrpto filter</title>
+  <script type="text/javascript" src="./src/main.js"></script>
 </head>
 
 <body>
-  <div class="input">
-    <!--     
-  <input type="text" name="g" class="input" id="" placeholder="1">
-    <input type="text" name="g" class="input" id="" placeholder="2">
-    <input type="text" name="g" class="input" id="" placeholder="3">
-    <input type="text" name="g" class="input" id="" placeholder="4">
-    <input type="text" name="g" class="input" id="" placeholder="5">
-    <input type="text" name="g" class="input" id="" placeholder="6"> 
-  -->
+  <div>
+    <div class="btn-group">
+      <p>Wielang ist das gesuchte Wort?</p>
+      <input type="text" class="" id="lengthInput" style="width: 100px;">
+      <button class="button" onclick="getValue()">Button</button>
+      <!-- <input type="text" class="" id="lengthInput" style="width: 100px;"> -->
+    </div>
   </div>
-
-  <div id="ausgabe_1" class="liste_symbol">
-    <p>Symbole</p>
-    <section>
-    </section>
+  <div>
+    <div>
+      <div class="input">
+        <!-- <input type="text" name="g" class="input" id="" placeholder="1"> -->
+      </div>
+    </div>
+    <div>
+      <div id="ausgabe_1" class="liste_symbol">
+        <p>Symbole</p>
+        <section>
+        </section>
+      </div>
+    </div>
+    <div id="ausgabe_2" class="liste_buchstaben">
+      <p>Buchstaben</p>
+      <section>
+      </section>
+    </div>
+    <div id="ausgabe_3" class="liste_häufigkeit">
+      <p>Häufigkeit</p>
+      <section>
+      </section>
+    </div>
   </div>
-  <div id="ausgabe_2" class="liste_buchstaben">
-    <p>Buchstaben</p>
-    <section>
-    </section>
-  </div>
-  <div id="ausgabe_3" class="liste_häufigkeit">
-    <p>Häufigkeit</p>
-    <section>
-    </section>
-  </div>
-
   <script type="module" src="src/main.js"></script>
 </body>

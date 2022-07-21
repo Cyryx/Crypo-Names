@@ -31,3 +31,22 @@ li {
   height: 25px;
   text-align: center;
 }
+
+.btn-group .button {
+  background-color: #4CAF50; /* Green */
+  border: 1px solid green;
+  color: white;
+  
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  cursor: pointer;
+  width: 100px;
+  display: block;
+}
+
+
+
+.btn-group .button:hover {
+  background-color: #3e8e41;
+}

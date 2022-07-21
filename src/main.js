@@ -1,5 +1,6 @@
 // --main.js--
-import { coinObj } from "../src/file.js";
+//import { coinObj } from "../src/file.js";
+let coinObj;
 
 
 let buchstabenMap = new Map;
@@ -22,11 +23,11 @@ let regEx = /^[^$1234567890BNKT]+$/i;
 let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "!", "§", "$", "%", "&", "/", "(", ")", "=", "?", "{", "[", "]", "}", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 window.onload = function () {
-    create_Map();
-    coin_validieren();
+    //create_Map();
+    //coin_validieren();
     //coin_Symbol(regEx);
-    coinPush();
-    coin_validieren()
+    //coinPush();
+    //coin_validieren()
     /*     create_li(buchstabenMap.keys(), "ausgabe_2")
         create_li(buchstabenMap.values(), "ausgabe_3") */
 }
@@ -353,7 +354,6 @@ function removeTask(i) {
 
 
 
-let arr = [1, 2]
 
 
 
@@ -368,17 +368,35 @@ let symbol_Input = function (arr, query) {
 };
 
 let create_input = function (inputNr) {
-        let quer = document.querySelector(".input");
-        let crt_input = document.createElement("input");
-    let setAttr_type = crt_input.setAttribute("type", "text");
-    let setAttr_class = crt_input.setAttribute("class", "input");
-   
+    let quer = document.querySelector(".input");
+
+
+
     for (let i = 1; i <= inputNr; i++) {
+        let crt_input = document.createElement("input");
+        let setAttr_type = crt_input.setAttribute("type", "text");
+        let setAttr_class = crt_input.setAttribute("class", "input");
+        let t = crt_input.setAttribute("input", "disabled")
+        let setAttr_id = crt_input.setAttribute("id", "searchInput");
         let setAttr_playceholder = crt_input.setAttribute("placeholder", i);
         let child = quer.appendChild(crt_input);
-        console.log(child)
+
     }
+
+    let qr = document.querySelector(".input");
+    let crt_btn = document.createElement("button");
+    let setAttr_btn = crt_btn.setAttribute("class", "button");
+    
+    crt_btn.append("suchen");
+    qr.appendChild(crt_btn)
 
 }
 
-create_input(2)
+//create_input(3)
+
+let getValue = function () {
+    document.querySelector('.button').disabled = true;
+
+    console.log(document.getElementById(".button"));
+    create_input(document.getElementById("lengthInput").value)
+}
