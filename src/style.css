@@ -23,9 +23,11 @@ div {
 li {
   text-align: left;
 }
-button {
-  display: flexbox;
-  justify-content: flex-start;
-  width: 100%;
-  margin: 10px;
+
+.input {
+  display: -webkit-flex;
+  display: flex;
+  width: 25px;
+  height: 25px;
+  text-align: center;
 }

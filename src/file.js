@@ -131,7 +131,7 @@ export let coinObj = {
     CALIFORNIUM: "CF",
     ADVANCEDINTERNETBLOCKS: "AIB",
     MEDICCOIN: "MEDIC",
-   /* BUBBLE: "BUB",
+    BUBBLE: "BUB",
     UNIVERSALCURRENCY: "UNIT",
     PARKBYTE: "PKB",
     ARBIT: "ARB",
@@ -56463,5 +56463,5 @@ export let coinObj = {
     NAC: "NOAH",
     APCH: "APCH",
     AGEN: "ALPHAGENESIS",
-    VOTE: "VOTE" */
+    VOTE: "VOTE" 
 }
