@@ -121,17 +121,26 @@ let input = [];
 let output = new Set();
 
 let buchstabenfilterLaenge = 3;
-let buchstabenfilter1 = "A";
+let buchstabenfilter_1 = "A";
 let buchstabenStelle_1 = false;
-let buchstabenfilter2 = "D";
-let buchstabenfilter3 = "A";
-let buchstabenfilter4 = "";
-let buchstabenfilter5 = "";
-let buchstabenfilter6 = "";
-let buchstabenfilter7 = "";
-let buchstabenfilter8 = "";
-let buchstabenfilter9 = "";
-let buchstabenfilter10 = "";
+let buchstabenfilter_2 = "D";
+let buchstabenStelle_2 = false;
+let buchstabenfilter_3 = "A";
+let buchstabenStelle_3 = false;
+let buchstabenfilter_4 = "";
+let buchstabenStelle_4 = false;
+let buchstabenfilter_5 = "";
+let buchstabenStelle_5 = false;
+let buchstabenfilter_6 = "";
+let buchstabenStelle_6 = false;
+let buchstabenfilter_7 = "";
+let buchstabenStelle_7 = false;
+let buchstabenfilter_8 = "";
+let buchstabenStelle_8 = false;
+let buchstabenfilter_9 = "";
+let buchstabenStelle_9 = false;
+let buchstabenfilter_10 = "";
+let buchstabenStelle_10 = false;
 
 
 
@@ -148,7 +157,7 @@ let letterSearch = function () {
 
   coinWert.forEach(function (e, i, a) {
     if (a[i].length === buchstabenfilterLaenge) {
-      if (a[i].match(buchstabenfilter1)) {
+      if (a[i].match(buchstabenfilter_1)) {
         input.push(`${a[i]}`);
       }
     }
@@ -157,62 +166,62 @@ let letterSearch = function () {
   input.forEach(function (e, i, a) {
     if (a[i].length === buchstabenfilterLaenge && a[i].match(regEx) !== null) {
       if (
-        buchstabenfilter1 !== "" &&
-        buchstabenfilter2 === "" &&
-        a[i].match(buchstabenfilter1) !== null
+        buchstabenfilter_1 !== "" &&
+        buchstabenfilter_2 === "" &&
+        a[i].match(buchstabenfilter_1) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter2 !== "" &&
-        buchstabenfilter3 === "" &&
-        a[i].match(buchstabenfilter2) !== null
+        buchstabenfilter_2 !== "" &&
+        buchstabenfilter_3 === "" &&
+        a[i].match(buchstabenfilter_2) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter3 !== "" &&
-        buchstabenfilter4 === "" &&
-        a[i].match(buchstabenfilter3) !== null
+        buchstabenfilter_3 !== "" &&
+        buchstabenfilter_4 === "" &&
+        a[i].match(buchstabenfilter_3) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter4 !== "" &&
-        buchstabenfilter5 === "" &&
-        a[i].match(buchstabenfilter4) !== null
+        buchstabenfilter_4 !== "" &&
+        buchstabenfilter_5 === "" &&
+        a[i].match(buchstabenfilter_4) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter5 !== "" &&
-        buchstabenfilter6 === "" &&
-        a[i].match(buchstabenfilter5) !== null
+        buchstabenfilter_5 !== "" &&
+        buchstabenfilter_6 === "" &&
+        a[i].match(buchstabenfilter_5) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter6 !== "" &&
-        buchstabenfilter7 === "" &&
-        a[i].match(buchstabenfilter6) !== null
+        buchstabenfilter_6 !== "" &&
+        buchstabenfilter_7 === "" &&
+        a[i].match(buchstabenfilter_6) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter7 !== "" &&
-        buchstabenfilter8 === "" &&
-        a[i].match(buchstabenfilter7) !== null
+        buchstabenfilter_7 !== "" &&
+        buchstabenfilter_8 === "" &&
+        a[i].match(buchstabenfilter_7) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter8 !== "" &&
-        buchstabenfilter9 === "" &&
-        a[i].match(buchstabenfilter8) !== null
+        buchstabenfilter_8 !== "" &&
+        buchstabenfilter_9 === "" &&
+        a[i].match(buchstabenfilter_8) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter9 !== "" &&
-        buchstabenfilter10 === "" &&
-        a[i].match(buchstabenfilter9) !== null
+        buchstabenfilter_9 !== "" &&
+        buchstabenfilter_10 === "" &&
+        a[i].match(buchstabenfilter_9) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (
         buchstabenfilter10 !== "" &&
-        a[i].match(buchstabenfilter10) !== null
+        a[i].match(buchstabenfilter_10) !== null
       ) {
         output.add(`${a[i]} `);
       } else if (buchstabenfilter1 === "") {
@@ -234,17 +243,14 @@ let stelle = function (buchstabenStelle, buchstabenfilter, stelle) {
 
   output.forEach(function (e, a, i) {
     if (
-
       !buchstabenStelle &&
       buchstabenfilter
     ) {
-      // create_li(Array.from(output).sort(), "ausgabe_1");
       cleanOutput.push(e)
-
     }
     else if (
-      buchstabenStelle &&
-      buchstabenfilter &&
+      buchstabenStelle_1 &&
+      buchstabenfilter_1 &&
       stelle >= 0
     ) {
 
@@ -272,7 +278,7 @@ let stelle = function (buchstabenStelle, buchstabenfilter, stelle) {
 
 }
 
- stelle(buchstabenStelle_1, buchstabenfilter1, 0)
+ stelle(buchstabenStelle_1, buchstabenfilter_1, 0)
 
 
 
