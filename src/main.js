@@ -1,6 +1,10 @@
 // --main.js--
 import { coinObj } from "../src/file.js";
+import {wodl_1} from "../src/wodl.js"
 /////let coinObj;
+
+const inputFilesCoin = wodl_1;
+
 
 let buchstabenMap = new Map();
 //let buchstabenMapCount = new Map;
@@ -13,10 +17,10 @@ let buchstabenFilterArr_4 = [];
 let buchstabenFilterArr_5 = [];
 let buchstabenFilterArr_6 = [];
 
-let buchstabenFilter = "T";
+let buchstabenFilter = "";
 let buchstabenFilterStelle = 0;
 let buchstabenFilterLaenge = 3;
-let regEx = /^[^$1234567890LGOBEMSN]+$/i;
+let regEx = /^[^$1234567890]+$/i;
 
 //let regEx = new RegExp("^[^" +buchstabenFilter+ "]+$");
 
@@ -64,7 +68,7 @@ let letterCount = function (arr) {
 
 
 let letterCounter = function () {
-  let coinWert = filterArray(Object.values(coinObj));
+  let coinWert = filterArray(Object.values(inputFilesCoin));
 
   coinWert.forEach(function (e) {
     if (e.match(regEx) !== null) {
@@ -120,12 +124,12 @@ let create_li = function (arr, target) {
 let input = [];
 let output = new Set();
 
-let buchstabenfilterLaenge = 3;
+let buchstabenfilterLaenge = 7;
 let buchstabenfilter_1 = "A";
 let buchstabenStelle_1 = false;
-let buchstabenfilter_2 = "D";
+let buchstabenfilter_2 = "";
 let buchstabenStelle_2 = false;
-let buchstabenfilter_3 = "A";
+let buchstabenfilter_3 = "";
 let buchstabenStelle_3 = false;
 let buchstabenfilter_4 = "";
 let buchstabenStelle_4 = false;
@@ -153,7 +157,7 @@ let buchstabenStelle_10 = false;
 
 let letterSearch = function () {
   //console.log(coinWert)
-  let coinWert = filterArray(Object.values(coinObj));
+  let coinWert = filterArray(Object.values(inputFilesCoin));
 
   coinWert.forEach(function (e, i, a) {
     if (a[i].length === buchstabenfilterLaenge) {
@@ -220,11 +224,11 @@ let letterSearch = function () {
       ) {
         output.add(`${a[i]} `);
       } else if (
-        buchstabenfilter10 !== "" &&
+        buchstabenfilter_10 !== "" &&
         a[i].match(buchstabenfilter_10) !== null
       ) {
         output.add(`${a[i]} `);
-      } else if (buchstabenfilter1 === "") {
+      } else if (buchstabenfilter_1 === "") {
         output.add(`${a[i]} 0`);
       }
     }
@@ -278,7 +282,7 @@ let stelle = function (buchstabenStelle, buchstabenfilter, stelle) {
 
 }
 
- stelle(buchstabenStelle_1, buchstabenfilter_1, 0)
+ stelle(buchstabenStelle_1, buchstabenfilter_1, 1)
 
 
 
