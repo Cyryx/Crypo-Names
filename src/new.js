@@ -1,10 +1,30 @@
-import { wodl_1 } from "../src/wodl.js"
-const inputFilesValue = Object.values(wodl_1)
+// import { wodl_1 } from "../src/wodl.js"
+import { coinObj } from "../src/file.js"
+let coin_sort = function (a, b) {
+    if (a < b) {
+      return -1
+    } else if (a > b) {
+      return 1
+    } else {
+      return 0
+    }
+}
+  
+function filterArray(inputArr) {
+    var found = {};
+    var out = inputArr.filter(function (element) {
+      return found.hasOwnProperty(element) ? false : (found[element] = true);
+    });
+    return out;
+  }
+const inputFilesValue = Object.values(coinObj)
 
 let searchLetter = []
-const wordLength = 3;
+const wordLength = 4;
+let regEx = /^[^$1234567890BU]+$/i;
 
-let arrayNumbers = Array.from(Array(wordLength).keys());
+
+let arrayNumbers = coin_sort(Array.from(Array(wordLength).keys()));
 let map = new Map();
 let setCollect = new Set();
 let setSort = new Set();
@@ -14,7 +34,7 @@ if (wordLength === 0 && searchLetter == "") {
 } else if (wordLength > 0 && searchLetter=="") {
     inputFilesValue.forEach(function (ele) {
         //Nur elemente mit exakter länge ausgeben
-        if (ele.length === wordLength) { 
+        if (ele.length === wordLength && ele.match(regEx) !== null) { 
             console.log(ele)
         }
     })
@@ -52,3 +72,4 @@ else {
 }
 
 }
+
